@@ -1,9 +1,9 @@
 const express=require('express')
-
+const config=require('./shared/config')
 
 const app=express()
 
 
-app.listen(3000,()=>{
-    console.log('server 300-portda ishlayapti')
+app.listen(config.port,()=>{
+    console.log(`Server ${config.db.port}-portda ishlayapti`)
 })
