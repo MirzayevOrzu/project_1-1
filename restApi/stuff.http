@@ -1,0 +1,44 @@
+### Add stuff
+POST http://localhost:3000/stuff
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjgsInJvbGUiOiJ0ZWFjaGVyIiwiaWF0IjoxNjg2OTUxMzAzfQ.0cTZLyveZPkKpg6uIwaaSl3NcqjDlj6ckOjzhvz_zoU
+Content-Type: application/json
+
+{
+  "first_name": "Akramjon",
+  "last_name": "Abdullayev",
+  "role": "teacher",
+  "username": "ass_1233",
+  "password": "12345"
+}
+####  Login schema
+POST http://localhost:3000/login
+Content-Type: application/json
+
+{
+ "username": "ass_teach6",
+  "password": "12345"
+}
+
+
+### List stuff
+GET http://localhost:3000/stuff
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwicm9sZSI6InRlYWNoZXIiLCJpYXQiOjE2ODY5NTE5MzF9.rFZwtXqKPl8oLfbWnhSA9uEguDfPaKrduXPn0CMdXJ4
+# query params: role, q
+
+### Show single stuff
+GET http://localhost:3000/stuff/7
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwicm9sZSI6InRlYWNoZXIiLCJpYXQiOjE2ODY5NTE5MzF9.rFZwtXqKPl8oLfbWnhSA9uEguDfPaKrduXPn0CMdXJ4
+### Update stuff
+PATCH http://localhost:3000/stuff/7
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjgsInJvbGUiOiJ0ZWFjaGVyIiwiaWF0IjoxNjg2OTUxMzAzfQ.0cTZLyveZPkKpg6uIwaaSl3NcqjDlj6ckOjzhvz_zoU
+Content-Type: application/json
+
+{
+  "first_name": "MuhammadSodiq",
+  "last_name": "Mirziyoyev",
+  "username": "mirziyoyev" 
+}
+
+### Delete stuff
+DELETE http://localhost:3000/stuff/7
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwicm9sZSI6InRlYWNoZXIiLCJpYXQiOjE2ODY5NTE5MzF9.rFZwtXqKPl8oLfbWnhSA9uEguDfPaKrduXPn0CMdXJ4
