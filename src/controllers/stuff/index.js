@@ -18,7 +18,7 @@ const postStuff = async (req, res) => {
             .returning('*')
         console.log(result)
         res.status(201).json({
-            user: result[0]
+            stuff: result[0]
         })
     }
     catch (error) {

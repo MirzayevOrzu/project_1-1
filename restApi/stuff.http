@@ -4,10 +4,10 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjgsInJvbGUiOiJ0ZWFj
 Content-Type: application/json
 
 {
-  "first_name": "Akramjon",
+  "first_name": "Alisher",
   "last_name": "Abdullayev",
   "role": "teacher",
-  "username": "ass_1233",
+  "username": "alisher11",
   "password": "12345"
 }
 ####  Login schema
@@ -15,7 +15,7 @@ POST http://localhost:3000/login
 Content-Type: application/json
 
 {
- "username": "ass_teach6",
+ "username": "alisher111",
   "password": "12345"
 }
 
@@ -26,10 +26,10 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwicm9sZSI6InRlYWNo
 # query params: role, q
 
 ### Show single stuff
-GET http://localhost:3000/stuff/7
+GET http://localhost:3000/stuff/5
 Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwicm9sZSI6InRlYWNoZXIiLCJpYXQiOjE2ODY5NTE5MzF9.rFZwtXqKPl8oLfbWnhSA9uEguDfPaKrduXPn0CMdXJ4
 ### Update stuff
-PATCH http://localhost:3000/stuff/7
+PATCH http://localhost:3000/stuff/5
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjgsInJvbGUiOiJ0ZWFjaGVyIiwiaWF0IjoxNjg2OTUxMzAzfQ.0cTZLyveZPkKpg6uIwaaSl3NcqjDlj6ckOjzhvz_zoU
 Content-Type: application/json
 
@@ -40,5 +40,5 @@ Content-Type: application/json
 }
 
 ### Delete stuff
-DELETE http://localhost:3000/stuff/7
+DELETE http://localhost:3000/stuff/5
 Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwicm9sZSI6InRlYWNoZXIiLCJpYXQiOjE2ODY5NTE5MzF9.rFZwtXqKPl8oLfbWnhSA9uEguDfPaKrduXPn0CMdXJ4
