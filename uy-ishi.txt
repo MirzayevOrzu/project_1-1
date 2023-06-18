@@ -1,0 +1,119 @@
+####
+6-dars=============================================================================
+  1-qadam
+
+	quidagi https://github.com/MirzayevOrzu/project_1.git loyihani githubdan yuklab oling
+	buning uchun terminalga quidagi buyruqni bering.
+		git clone https://github.com/MirzayevOrzu/project_1.git
+
+  2-qadam
+
+	loyihani vscodeda oching.
+		cd project_1
+		code .
+
+	kutubxonalarni o'rnating
+		npm i
+
+  3-qadam
+	loyiha uchun alohida database yarating
+	-buyruqlar oynasidan databazaga ulaning
+	-yangi database yasang (CREATE DATABASE project_1)
+
+  4-qadam
+	.env.example faylidan foydalanib .env fayl qo'shing va kalitlarni bering
+
+  5-qadam
+
+	Loyihani quidagi buyruq bilan yuruting
+		nodemon src/index.js
+
+  6-qadam
+	
+	Mavjud jadvallarni migratsiya qilish
+	Quidagi buyurq orqali
+	knex migrate:latest
+
+  7-qadam	
+	INSERT INTO stuff (first_name, last_name, role, username, password) VALUES ('Abdulloh', 'Musayev', 'super_admin', 'superadmin', 'foobar');
+		
+  8-qadam
+
+	Qilingan ishlar bilan tanishib chiqing. Eringmang. Savollar bo'lsa so'rang.
+
+	Hozir stufflar crud qilingan (ya'ni create, read, update, delete)
+	Login qiling yo'li ham bor.
+
+	Va login qilishni tekshirish va rollarni tekshiring uchun helperlar bor
+	Ular qanday ishlatilganini ko'rish uchun src/routes/stuff.js fayliga qarang
+
+  9-qadam 
+
+ Endi topshiriqlarga o'ting
+
+	1-topshiriq
+		-src/controllers/index.js fayliga o'ting
+		-postStuff funksiyasini toping
+		-yangi stuff create qilishda passwordni hashlang
+		-bu uchun bcrypt kutubxonasini ishlating
+
+	2-topshiriq
+		-src/controllers/index.js fayliga o'ting
+		-loginStuff funksiyasini toping
+		-login qilishda passwordni bcrupt bilan compare qiling
+
+	3-topshiriq
+		-src/controllers/index.js fayliga o'ting
+		-patchStuff funksiyasini toping
+		-agarda o'zgarishlar(changes)da password kelsa uni hashlagan holda saqlang
+
+	4-topshiriq
+		-students jadvali uchun migration yarating
+		-bu uchun quidagi buyruqni ishlating
+			knex migrate:make students
+		-buyruq yangi fayl yaratadi migrations papkasini ichida
+		-students jadvalini db.txt faylga ko'ra shakllantiring
+
+	6-topshiriq
+		-studentlar uchun crud yozing. stuff uchun yozilgan cruddan namuna sifatida foydalaning.
+
+###
+7-dars========================================================================
+ ###
+   1-topshiriq
+ stuff hamda groups uchun seedlar qo'shing
+ seedlarni run qilib ko'ring
+
+   2-topshiriq
+ guruhlarni crud qilib chiqing
+
+   3-topshiriq
+ directionlarni crud qilib chiqing
+ direction uchun ham seed yozing
+ Dizayn, Dasturlash, Grafika, Boshqa
+
+   4-topshiriqx
+ student_groups uchun migration yasang.
+
+   groups controllerini ichida
+
+   POST /groups/:id/students/:student_id (Guruhga qo'sh)
+	IDsi id bo'lgan guruhga IDsi student_id bo'lgan talabani biriktirish
+
+   DELETE /groups/:id/students/:student_id (Guruhdan o'chir)
+	IDsi id bo'lgan guruhdan IDsi student_id bo'lgan talabani o'chirib tashlash
+
+   GET /groups/:id/students (Guruh talabalarini ko'rish)
+	IDsi id bo'lgan guruhda o'quvchi o'quvchilar ro'yxatini ko'rish uchun API
+
+
+###
+8-dars=========================================================================
+ ###
+
+ !Birinchi o'rinda o'tgan darsdagi uy ishlarini tugating
+
+ Topshiriq
+
+  groups, students, directions, stuff uchun
+  paginatsiya, qidiruv, filterlashni list APIlari uchun tadbiq eting
