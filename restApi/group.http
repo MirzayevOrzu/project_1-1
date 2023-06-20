@@ -1,20 +1,24 @@
 ###
 POST http://localhost:3000/groups
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6InRlYWNoZXIiLCJpYXQiOjE2ODcxNzc5NTd9.NFE7fM5z3zYMXD55LRgABjYloLGK3b8gMQGY4FEWueo
 Content-Type: application/json
 
 {
-    "name":"N84",
-    "teacher_id":1
+    "name":"N1124",
+    "teacher_id":11,
+    "direction_id":9
 }
 
 ###
-GET http://localhost:3000/groups
-Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6InRlYWNoZXIiLCJpYXQiOjE2ODcxNzc5NTd9.NFE7fM5z3zYMXD55LRgABjYloLGK3b8gMQGY4FEWueo
+GET http://localhost:3000/groups?direction_id=9
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsInJvbGUiOiJ0ZWFjaGVyIiwiaWF0IjoxNjg3MjE3NTk4fQ._i13z3WWXAv63lRxPbqw53gtX7yHncY0ka5vNeqjqUE
 
 ###
-GET  http://localhost:3000/groups/14
+GET  http://localhost:3000/groups/16
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6InRlYWNoZXIiLCJpYXQiOjE2ODcxNzc5NTd9.NFE7fM5z3zYMXD55LRgABjYloLGK3b8gMQGY4FEWueo
+
+###
+POST http://localhost:3000/groups/16/students/21
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsInJvbGUiOiJ0ZWFjaGVyIiwiaWF0IjoxNjg3MjE3NTk4fQ._i13z3WWXAv63lRxPbqw53gtX7yHncY0ka5vNeqjqUE
 
 ###
 GET http://localhost:3000/groups_students

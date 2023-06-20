@@ -35,18 +35,27 @@ const postStuff = async (req, res) => {
  */
 const getStuff=async(req,res)=>{
     try{
-        const {role,q}=req.query
+        const {role,q, limit = 5, offset = 0, sort_by = 'id', sort_order = 'desc'}=req.query
 
-        const dbQuery=db('stuff').select('id','first_name','last_name','username')
+        const dbQuery=db('stuff').select('id','first_name','last_name','role','username')
         if(role){
             dbQuery.where({role})
         }
         if(q){
             dbQuery.whereILike('firstname',`%{q}`).orWhereILike('last_name',`%${q}`)
         }
+
+        dbQuery.orderBy(sort_by, sort_order)
+        dbQuery.limit(limit).offset(offset)
+
         const stuff=await dbQuery;
         res.status(200).json({
-            stuff
+            stuff,
+            pageInfo: {
+              total: total.length,
+              limit,
+              offset
+            }
         })
 
     }
@@ -58,6 +67,13 @@ const getStuff=async(req,res)=>{
         })
     }
 }
+
+
+/**
+ * 
+ * @param {express.Request} req 
+ * @param {express.Response} res 
+ */
 const loginStuff = async (req, res) => {
     try {
         const { username, password } = req.body;
@@ -88,6 +104,12 @@ const loginStuff = async (req, res) => {
     }
 }
 
+
+/**
+ * 
+ * @param {express.Request} req 
+ * @param {express.Response} res 
+ */
 const showStuff = async (req, res) => {
     try {
       const { id } = req.params;
@@ -112,6 +134,12 @@ const showStuff = async (req, res) => {
     }
   };
   
+  
+/**
+ * 
+ * @param {express.Request} req 
+ * @param {express.Response} res 
+ */
 const patchStuff = async (req, res) => {
     try {
       const { ...changes } = req.body;
@@ -143,6 +171,11 @@ const patchStuff = async (req, res) => {
   };
   
 
+/**
+ * 
+ * @param {express.Request} req 
+ * @param {express.Response} res 
+ */
 const deleteStuff = async (req, res) => {
     try {
       const { id } = req.params;

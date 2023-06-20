@@ -15,18 +15,18 @@ POST http://localhost:3000/login
 Content-Type: application/json
 
 {
- "username": "alisher111",
+ "username":"alisher11",
   "password": "12345"
 }
 
 
 ### List stuff
 GET http://localhost:3000/stuff
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwicm9sZSI6InRlYWNoZXIiLCJpYXQiOjE2ODY5NTE5MzF9.rFZwtXqKPl8oLfbWnhSA9uEguDfPaKrduXPn0CMdXJ4
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsInJvbGUiOiJ0ZWFjaGVyIiwiaWF0IjoxNjg3MjE3NTk4fQ._i13z3WWXAv63lRxPbqw53gtX7yHncY0ka5vNeqjqUE
 # query params: role, q
 
 ### Show single stuff
-GET http://localhost:3000/stuff/5
+GET http://localhost:3000/stuff/11
 Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwicm9sZSI6InRlYWNoZXIiLCJpYXQiOjE2ODY5NTE5MzF9.rFZwtXqKPl8oLfbWnhSA9uEguDfPaKrduXPn0CMdXJ4
 ### Update stuff
 PATCH http://localhost:3000/stuff/5

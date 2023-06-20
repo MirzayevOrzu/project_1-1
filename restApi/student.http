@@ -10,7 +10,7 @@ Content-Type: application/json
 
 ###
 GET http://localhost:3000/student
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwicm9sZSI6InRlYWNoZXIiLCJpYXQiOjE2ODcwOTI5MDN9.6nbhVd2YC_LTAtC1F1FamPJ8lwJQD8OTKxnIARKPO0w
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsInJvbGUiOiJ0ZWFjaGVyIiwiaWF0IjoxNjg3MjE3NTk4fQ._i13z3WWXAv63lRxPbqw53gtX7yHncY0ka5vNeqjqUE
 
 ###
 GET http://localhost:3000/student/10

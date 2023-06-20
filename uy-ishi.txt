@@ -117,3 +117,38 @@
 
   groups, students, directions, stuff uchun
   paginatsiya, qidiruv, filterlashni list APIlari uchun tadbiq eting
+
+
+###
+9-dars========================================================================
+   ###
+   1-topshiriq
+
+  Guruhda yo'nalish (Direction) biriktirish kerak
+  Buning uchun alohida migration fayl oching va groups jadvaliga
+  direction_id ustunini qo'shing. Hozirgacha qo'shilgan guruhlarda direction_id null bo'lsin
+
+  !Endi bizda faqat guruhni nomi, N82, emas balki o'sha guruh qaysi yo'nalishda ekanligini ham
+  bila olamiz, masalan N82 guruhi, Dasturlash yo'nalishida.
+
+  2-topshiriq
+
+  Guruhlar listini olish uchun API(GET /groups)da direction_id ustunini ham selectga qo'shing.
+  Hamda direction_idga ko'ra filterlarni ham qo'shib keting
+
+  !Endi bizni API (GET /groups)da guruhlarni yo'nalishga ko'ra filterlay olamiz.
+  Masalan Dasturlash yo'nalishidagi hamma guruhlarni ko'rish (GET /groups?direction_id="dasturlash_id")
+  yoki dizayn yo'lanishidagi hamma guruhlarni ko'rish (GET /groups?direction_id="dizayn.id")
+
+  3-topshiriq
+
+  Bitta guruhni olishda biz o'qituvchi, assistent va studentlar ma'lumotlarini join qilib olayotgan edik.
+  Endi yo'nalishni ma'lumotlarini ham o'shanga qo'shing
+
+  {
+   name: "N82",
+   teacher: null yoki {}
+   assitent: null yoki {}
+   direction: null yoki { id, name: "Dasturlash" }
+   students: []
+  }
