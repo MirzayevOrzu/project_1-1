@@ -6,8 +6,9 @@ exports.up = function(knex) {
     return knex.schema.createTable('groups_students', (table) => {
         table.increments('id').primary();
         table.integer('student_id').references('id').inTable('students').onDelete('CASCADE');
-        table.integer('group_id').references('id').inTable('groups').onDelete('CASCADE').unique(['student_id']);
-        table.date('joined_at').defaultTo(knex.fn.now())
+        table.integer('group_id').references('id').inTable('groups').onDelete('CASCADE');
+        table.date('joined_at').defaultTo(knex.fn.now());
+        table.unique(['student_id','group_id'])
       });
 };
 

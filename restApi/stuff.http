@@ -1,13 +1,13 @@
 ### Add stuff
 POST http://localhost:3000/stuff
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjgsInJvbGUiOiJ0ZWFjaGVyIiwiaWF0IjoxNjg2OTUxMzAzfQ.0cTZLyveZPkKpg6uIwaaSl3NcqjDlj6ckOjzhvz_zoU
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywicm9sZSI6ImFkbWluIiwiaWF0IjoxNjg3NDk2OTQxfQ.qB8gC_DL5YYdLORTPmaIby4gAuxmma8ZblPx0dF6s9o
 Content-Type: application/json
 
 {
   "first_name": "Alisher",
   "last_name": "Abdullayev",
   "role": "teacher",
-  "username": "alisher11",
+  "username": "aasdsd",
   "password": "12345"
 }
 ####  Login schema
@@ -15,22 +15,22 @@ POST http://localhost:3000/login
 Content-Type: application/json
 
 {
- "username":"alisher11",
+ "username": "davron1",
   "password": "12345"
 }
 
 
 ### List stuff
 GET http://localhost:3000/stuff
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsInJvbGUiOiJ0ZWFjaGVyIiwiaWF0IjoxNjg3MjE3NTk4fQ._i13z3WWXAv63lRxPbqw53gtX7yHncY0ka5vNeqjqUE
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywicm9sZSI6ImFkbWluIiwiaWF0IjoxNjg3NDk4NDIzfQ.mskJyLtLJcezjV5nhYADilP99yXNmmeLUFdzPOut0GU
 # query params: role, q
 
 ### Show single stuff
-GET http://localhost:3000/stuff/11
-Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwicm9sZSI6InRlYWNoZXIiLCJpYXQiOjE2ODY5NTE5MzF9.rFZwtXqKPl8oLfbWnhSA9uEguDfPaKrduXPn0CMdXJ4
+GET http://localhost:3000/stuff/5
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywicm9sZSI6ImFkbWluIiwiaWF0IjoxNjg3NDk4NDIzfQ.mskJyLtLJcezjV5nhYADilP99yXNmmeLUFdzPOut0GU
 ### Update stuff
 PATCH http://localhost:3000/stuff/5
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjgsInJvbGUiOiJ0ZWFjaGVyIiwiaWF0IjoxNjg2OTUxMzAzfQ.0cTZLyveZPkKpg6uIwaaSl3NcqjDlj6ckOjzhvz_zoU
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywicm9sZSI6ImFkbWluIiwiaWF0IjoxNjg3NDk4NDIzfQ.mskJyLtLJcezjV5nhYADilP99yXNmmeLUFdzPOut0GU
 Content-Type: application/json
 
 {

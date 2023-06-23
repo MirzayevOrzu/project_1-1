@@ -19,10 +19,11 @@ const postGroup = async (req, res) => {
           error: "Bunday idlik teacher MAVJUD EMAS"
         })
     }
+    
 
     if (assistent_teacher_id) {
       const existing = await db('stuff').where({ id: assistent_teacher_id }).first()
-      if (!existing || (existing.role != 'assistent_teacher_id'))
+      if (!existing || (existing.role != 'assistent_teacher'))
         return res.status(404).json({
           error: "Bunday idlik assistent_teacher MAVJUD EMAS"
         })
@@ -171,6 +172,86 @@ const getGroup = async (req, res) => {
 //     }
 // }
 
+// const showGroup = async (req, res) => {
+//   try {
+//     const { id } = req.params;
+
+//     const group = await db('groups')
+//       .leftJoin('stuff as stuff_teacher', 'stuff_teacher.id', 'groups.teacher_id')
+//       .leftJoin('stuff as stuff_assistent ', 'stuff_assistent.id', 'groups.assistent_teacher_id')
+//       .leftJoin('groups_students', 'groups_students.group_id', 'groups.id')
+//       .leftJoin('students', 'students.id', 'groups_students.student_id')
+//       .leftJoin('directions', 'directions.id', 'groups.direction_id')
+//       .select(
+//         'groups.id',
+//         'groups.name',
+//         db.raw(`
+//         CASE 
+//         WHEN groups.direction_id IS NULL THEN NULL
+//         ELSE   json_build_object(
+//           'id', directions.id,
+//           'name', directions.name
+//         )
+//         END as direction
+//         `),
+//         db.raw(`
+//           CASE
+//           WHEN stuff_teacher.id IS NULL THEN NULL
+//           ELSE json_build_object(
+//             'id', stuff_teacher.id,
+//             'first_name', stuff_teacher.first_name,
+//             'last_name', stuff_teacher.last_name,
+//             'role', stuff_teacher.role,
+//             'username', stuff_teacher.username
+//           )
+//           END as teacher
+//           `),
+//         db.raw(`
+//           CASE
+//           WHEN stuff_assistent.id IS NULL THEN NULL
+//           ELSE json_build_object(
+//             'id', stuff_assistent.id,
+//             'first_name', stuff_assistent.first_name,
+//             'last_name', stuff_assistent.last_name,
+//             'role', stuff_assistent.role,
+//             'username', stuff_assistent.username
+//           )
+//           END as assistent_teacher
+//           `),
+//         db.raw(`
+//           CASE
+//           WHEN students.id IS NULL THEN '[]'
+//           ELSE json_agg(
+//             json_build_object(
+//               'id', students.id,
+//               'first_name', students.first_name,
+//               'last_name', students.last_name
+//             )
+//           )
+//           END as students
+//           `)
+//       )
+//       .where({ 'groups.id': id })
+//       .groupBy('groups.id', 'stuff_teacher.id', 'stuff_assistent.id', 'students.id', 'directions.id')
+//       .first();
+
+//     if (!group) {
+//       return res.status(404).json({
+//         error: 'Group not found',
+//       });
+//     }
+
+//     res.status(201).json({
+//       group,
+//     });
+//   } catch (error) {
+//     res.status(500).json({
+//       error: error.message,
+//     });
+//   }
+// };
+
+
 const showGroup = async (req, res) => {
   try {
     const { id } = req.params;
@@ -180,69 +261,48 @@ const showGroup = async (req, res) => {
       .leftJoin('stuff as stuff_assistent ', 'stuff_assistent.id', 'groups.assistent_teacher_id')
       .leftJoin('groups_students', 'groups_students.group_id', 'groups.id')
       .leftJoin('students', 'groups_students.student_id', 'students.id')
-      .leftJoin('directions', 'directions.id', 'groups.direction_id')
       .select(
         'groups.id',
         'groups.name',
         db.raw(`
-        CASE 
-        WHEN groups.direction_id IS NULL THEN NULL
-        ELSE   json_build_object(
-          'id', directions.id,
-          'name', directions.name
+        CASE
+        WHEN stuff_teacher.id IS NULL THEN NULL
+        ELSE json_build_object(
+          'id', stuff_teacher.id,
+          'first_name', stuff_teacher.first_name,
+          'last_name', stuff_teacher.last_name,
+          'role', stuff_teacher.role,
+          'username', stuff_teacher.username
         )
-        END as direction
+        END as teacher
         `),
         db.raw(`
-          CASE
-          WHEN stuff_teacher.id IS NULL THEN NULL
-          ELSE json_build_object(
-            'id', stuff_teacher.id,
-            'first_name', stuff_teacher.first_name,
-            'last_name', stuff_teacher.last_name,
-            'role', stuff_teacher.role,
-            'username', stuff_teacher.username
-          )
-          END as teacher
-          `),
+        CASE
+        WHEN stuff_assistent.id IS NULL THEN NULL
+        ELSE json_build_object(
+          'id', stuff_assistent.id,
+          'first_name', stuff_assistent.first_name,
+          'last_name', stuff_assistent.last_name,
+          'role', stuff_assistent.role,
+          'username', stuff_assistent.username
+        )
+        END as assistent
+        `),
         db.raw(`
-          CASE
-          WHEN stuff_assistent.id IS NULL THEN NULL
-          ELSE json_build_object(
-            'id', stuff_assistent.id,
-            'first_name', stuff_assistent.first_name,
-            'last_name', stuff_assistent.last_name,
-            'role', stuff_assistent.role,
-            'username', stuff_assistent.username
+        CASE
+        WHEN students.id IS NULL THEN '[]'
+        ELSE json_agg(
+          json_build_object(
+            'id', students.id,
+            'first_name', students.first_name,
+            'last_name', students.last_name
           )
-          END as assistent_teacher
-          `),
-        db.raw(`
-          CASE
-          WHEN students.id IS NULL THEN '[]'
-          ELSE json_agg(
-            json_build_object(
-              'id', students.id,
-              'first_name', students.first_name,
-              'last_name', students.last_name
-            )
-          )
-          END as students
-          `)
-        // json_agg(
-        //   CASE 
-        //   WHEN students.id IS NULL THEN NULL
-        //   ELSE
-        //   json_build_object(
-        //     'id', students.id,
-        //     'first_name', students.first_name,
-        //     'last_name', students.last_name
-        //   )
-        //   END
-        // ) as students
+        )
+        END as students
+        `)
       )
       .where({ 'groups.id': id })
-      .groupBy('groups.id', 'stuff_teacher.id', 'stuff_assistent.id', 'students.id', 'directions.id')
+      .groupBy('groups.id', 'stuff_teacher.id', 'stuff_assistent.id', 'students.id')
       .first();
 
     if (!group) {
@@ -334,7 +394,7 @@ const postGroupStudent = async (req, res) => {
         student_id
       })
       .returning('*')
-
+console.log(result);
     res.status(201).json({
       message: `${student_id} lik Student ${id} idlik guruhga qo'shildi`
     })
